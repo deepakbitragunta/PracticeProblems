@@ -1,0 +1,32 @@
+private static int hashCode(String key) {
+    int hashVal = 0;
+    for (int i = 0; i < key.length(); i++) {
+      hashVal = (127 * hashVal + key.charAt(i)) % 16908799;
+    }
+    return hashVal;
+  }
+
+By multiplying the hash code by 127 before adding in each new character, we
+make sure that each character has a different effect on the final result.  The
+"%" operator with a prime number tends to "mix up the bits" of the hash code.
+The prime is chosen to be large, but not so large that 127 * hashVal +
+key.charAt(i) will ever exceed the maximum possible value of an int.
+
+The best way to understand good hash codes is to understand why bad hash codes
+are bad.  Here are some examples of bad hash codes on Words.
+
+  [1]  Sum up the ASCII values of the characters.  Unfortunately, the sum will
+       rarely exceed 500 or so, and most of the entries will be bunched up in
+       a few hundred buckets.  Moreover, anagrams like "pat," "tap," and "apt"
+       will collide.
+  [2]  Use the first three letters of a word, in a table with 26^3 buckets.
+       Unfortunately, words beginning with "pre" are much more common than
+       words beginning with "xzq", and the former will be bunched up in one
+       long list.  This does not approach our uniformly distributed ideal.
+  [3]  Consider the "good" hashCode() function written out above.  Suppose the
+       prime modulus is 127 instead of 16908799.  Then the return value is just
+       the last character of the word, because (127 * hashVal) % 127 = 0.
+       That's why 127 and 16908799 were chosen to have no common factors.
+
+Why is the hashCode() function presented above good?  Because we can find no
+obvious flaws, and it seems to work well in practice.  (A black art indeed.)
