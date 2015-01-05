@@ -1,3 +1,5 @@
+import java.util.LinkedList;
+
 public class CheckStringRotation {
 
 	public static boolean isSubstring(String s1, String s2) {
@@ -15,4 +17,5 @@ public class CheckStringRotation {
 		String s1 = " " , s2 = "";
 		System.out.println(isRotation(s1, s2));
 	}
+	
 }
