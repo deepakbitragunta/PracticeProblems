@@ -45,7 +45,7 @@ public class setOfStacks {
 			s.push(a[i]);
 		}
 		
-		System.out.println(s.pop());
+	//	System.out.println(s.pop());
 		System.out.println(s.pop());
 		System.out.println(s.popAtIndex(0));
 		System.out.println(s.popAtIndex(1));
