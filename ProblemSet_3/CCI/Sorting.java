@@ -5,6 +5,8 @@ public class Sorting {
 	
 	static  int a[] = {12, 5, 6, 20, -2, 5};
 	static  int b[] = new int[a.length];
+	
+	//Bubble sort
 	public static void bubbleSort(int a[]) {
 		for(int i = 0; i < a.length - 1; ++i) {
 			for(int j = 0; j < a.length - i - 1; ++j) {
@@ -16,6 +18,8 @@ public class Sorting {
 			}
 		}
 	}
+	
+	//Selection sort
 	public static void selectionSort(int a[]) {
 		int small, small_index = 0;
 		
@@ -31,6 +35,8 @@ public class Sorting {
 			a[i] = small;			
 		}
 	}
+	
+	// Merge sort
 	public static void mergeSort(int a[], int l,  int r) {
 		if(l < r) {
 			int mid = l + (r - l) / 2;
@@ -71,6 +77,7 @@ public class Sorting {
 		}
 	}
 	
+	// Quick sort
 	public static void quickSort(int a[]) {
 		if(a == null || a.length == 0) return;
 		quickSort(a, 0, a.length - 1);

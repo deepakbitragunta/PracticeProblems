@@ -238,6 +238,9 @@ public class BinaryTree {
 		System.out.println("Validity");
 		System.out.println(isValidBST(root, Integer.MIN_VALUE, Integer.MAX_VALUE));
 		
+		root = new BinaryTree(1);
+		root.left = new BinaryTree(1);
+		
 		System.out.println(isValidBST(root, null));
 		
 		/*System.out.println("\n PreOrder traversal: ");

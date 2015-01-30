@@ -63,8 +63,8 @@ public class removeDupsLinkedList {
 		head.appendValues(16);
 		head.appendValues(13);
 		head.appendValues(13);
-	//	removeDups(head);
-		removeDupsSpace(head);
+		removeDups(head);
+	//	removeDupsSpace(head);
 	}
 }
 

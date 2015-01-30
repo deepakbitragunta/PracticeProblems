@@ -26,7 +26,7 @@ public class sortedToBalancedBST {
 		int mid = l + (r - l) / 2;
 		
 		Node left = createTree(a, left, mid - 1);
-		Node root = new Node(h.val);
+		Node r = new Node(h.val);
 		h = h.next;
 		Node right = createTree(a, mid + 1, right);
 		r.left = left;

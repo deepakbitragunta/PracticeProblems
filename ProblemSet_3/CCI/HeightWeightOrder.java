@@ -58,7 +58,7 @@ public class HeightWeightOrder {
 	public ArrayList<htwt> compareSequences(ArrayList<htwt> seq1, ArrayList<htwt> seq2) {
 		if(seq1 == null) return seq2;
 		else if (seq2 == null) return seq1;
-		return seq1.size() > seq2.size() ? seq1 : seq2;
+		return seq1.size() < seq2.size() ? seq2 : seq1;
 	}
 	
 	
@@ -66,10 +66,10 @@ public class HeightWeightOrder {
 		int firstUnfit = start;
 		
 		if(start < items.size()) {
-		
-			for(int i = 0; i < items.size(); ++i) {
+			System.out.println("test");
+			for(int i = start; i < items.size(); ++i) {
 				htwt item = items.get(i);
-				if(i == 0 || items.get(i - 1).isBefore(item)) {
+				if(i == start || items.get(i - 1).isBefore(item)) {
 					nextSeq.add(item);
 				}
 				else {
@@ -105,9 +105,12 @@ public class HeightWeightOrder {
 		hwo.items.add(new htwt(54, 65));
 		hwo.items.add(new htwt(59, 69));
 		hwo.items.add(new htwt(51, 62));
-		hwo.findMaxSequence();
+		hwo.items.add(new htwt(53, 61));
+		hwo.items.add(new htwt(52, 60));
+		hwo.items.add(new htwt(51, 59));
+		ArrayList<htwt> maxSeq = hwo.findMaxSequence();
 		for(int i = 0; i < hwo.maxSeq.size(); ++i) {
-			System.out.println("(" + hwo.maxSeq.get(i).height + ", " + hwo.maxSeq.get(i).weight + ")");
+			System.out.println("(" + maxSeq.get(i).height + ", " + maxSeq.get(i).weight + ")");
 		}
 	}
 }

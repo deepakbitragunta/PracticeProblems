@@ -14,6 +14,23 @@ public class BalancedTree {
 		return (maxDepth(root) - minDepth(root) <= 1);
 	}
 	
+	bool isBalanced(TreeNode *root) {
+    int depth = 0;
+    return isBalanced(root, depth);
+}
+
+bool isBalanced(TreeNode *root, int &depth) {
+    if (!root) return true;
+
+    int ld, rd;
+    ld = rd = 0;
+    bool leftBal = isBalanced(root->left, ld);
+    bool rightBal = isBalanced(root->right, rd);
+
+    depth = (1 + max(ld, rd));
+    return ((abs(ld-rd) < 2) && leftBal && rightBal);
+}
+	
 	public static void main(String args[]) {
 		BinaryTree root = new BinaryTree(15);
 		BinaryTree.insert(root, 7);
