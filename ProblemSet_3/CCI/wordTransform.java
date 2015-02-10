@@ -14,7 +14,7 @@ public class wordTransform {
 			for(int i = 0; i < w.length(); ++i) {
 				char chars[] = w.toCharArray();
 				
-				for(char j = 'A'; j < 'Z'; ++j) {
+				for(char j = 'a'; j < 'z'; ++j) {
 					if(w.charAt(i) != j) {
 						chars[i] = j;
 						s.add(new String(chars));
@@ -61,13 +61,32 @@ public class wordTransform {
 		}
 		return null;		
 	}
+	
+	 public static int ladderLength(String start, String end, Set<String> dict) {
+        
+        int count = 0;
+        start = start.toLowerCase();
+        
+        String t = start;
+        for(String s : getEditedWords(t)) {
+            if(s.equals(end)) {
+                count++;
+                return count;
+            } else if(dict.contains(s)) {
+                count++;
+                t = s;
+            } 
+        }
+         return count;
+    }
 
 	public static void main(String args[]) {
 		
 		Set<String> d = new TreeSet<String>();
-		d.add("ADD"); d.add("ADI"); d.add("IDI"); d.add("ICI");
-		LinkedList<String> l = transform(d, "Add", "IPI");
-		System.out.println(l.toString());
+		d.add("hOT"); 
+		d.add("DOG"); // d.add("ADI"); d.add("IDI"); d.add("ICI");
+	//	LinkedList<String> l = transform(d, "Add", "IPI");
+		System.out.println(ladderLength("HOT", "DOG", d));
 	}
 
 }

@@ -1,8 +1,8 @@
 public class Queens8 {
 
-	static int colsForRow [] = new int[8];
+	int colsForRow [] = new int[8];
 	
-	public static boolean check(int row) {
+	boolean check(int row) {
 		for(int i = 0; i < row; ++i)  {
 			int diff = Math.abs(colsForRow[row] - colsForRow[i]);
 			if(diff == 0 || diff == row - i) 
@@ -25,15 +25,13 @@ public class Queens8 {
 			}
 	}
 	
-	public static void printBoard() {
-		System.out.println("arrangement: ");
+	public void printBoard() {
 		for(int i = 0; i < 8; ++i) {
 			System.out.println(colsForRow[i]);
 		}	
-		System.out.println();
 	}
 	
 	public static void main(String args[]) {
-		placeQueens(0);
+		placeQueens(0);	
 	}
 }

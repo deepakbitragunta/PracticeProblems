@@ -18,8 +18,52 @@ public class findSumPairs {
 		}
 		return pairs.toString();
 	}
-	
+	// O(n)
 	public static String getPairsSorted(int a[], int sum) {
+		Arrays.sort(a);
+		ArrayList<String> pairs = new ArrayList<String>();
+		int first = 0;
+		int last = a.length - 1;
+		
+		while(first < last) {
+			int temp = a[first] + a[last];
+			if(temp == sum) {
+				pairs.add("(" + a[first] + "," + " " +  a[last] + ")");
+				first++;
+				last--;
+			} else{
+				if (temp < sum) {
+					first++;
+				}		
+				else {
+					last--;
+				}
+			}
+		}
+		
+		return pairs.toString();
+		
+	}
+	/*	// O(n log n)
+		public static String findPairs(int a[], int sum) {
+			for(int i = 0; i < n; ++i) {
+				binarySearch(a, i + 1, a.length - 1, sum - a[i]);
+			}
+		}
+		
+		public static int binarySearch(int a[], int l, int r, int key) {
+		
+			while( l < r) {
+				int mid = (l + (r - l)) / 2;
+				if(a[mid] == key) return true;
+			
+			
+			}
+			*/
+		
+		
+		}
+		public static String getPairsSorted(int a[], int sum) {
 		Arrays.sort(a);
 		ArrayList<String> pairs = new ArrayList<String>();
 		int first = 0;
