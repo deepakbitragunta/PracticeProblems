@@ -34,12 +34,66 @@ public class RightBottom {
 		}
 		return success;
 	}
+	public static int countAllPaths(int m, int n) {
+		int paths[][] = new int[m + 1][n + 1];
+		
+		paths[m - 1][n] = 1;
+		
+		for(int i = m - 1; i >= 0; --i) {
+			for(int j = n - 1; j >= 0; --j) {
+				paths[i][j] = paths[i + 1][j] + paths[i][j + 1]; // + paths[i + 1][j + 1];
+			}
+		}
+		return paths[0][0];
+	}
+	
+	public static void printAllPaths(int i, int j, int matrix[][], int paths[], int index, int m, int n) {
+		// last row
+		if(i == m - 1) {
+			for(int c = j; c < n; ++c) {
+				
+				paths[index + c - j] = matrix[i][c];
+			}
+			for(int k = 0; k < index + n - j; ++k) {
+				System.out.print(paths[k] + " ");
+			}
+			System.out.println("\n");
+			return;
+		}
+		
+		// last column 
+		if(j == n - 1) {
+			for(int r = i; r < m; ++r) {
+				paths[index + r - i] = matrix[r][j];
+			}
+			for(int k = 0; k < index + m - i; ++k) {
+				System.out.print(paths[k] + " ");
+			}
+			System.out.println("\n");
+			return;
+		}
+		
+		paths[index] = matrix[i][j];
+		// Go right
+		printAllPaths(i, j + 1, matrix, paths, index + 1, m , n);
+		
+		// Go downward
+		printAllPaths(i + 1, j, matrix, paths, index + 1, m, n);
+		
+		// Go Diagonal
+		// printAllPaths(i + 1, j + 1, matrix, paths, index + 1, m, n);
+		
+	}
 	
 	public static void main(String args[]) {
 		ArrayList<Point> cur_path = new ArrayList<Point>();
-		getPaths(cur_path, 3, 3);
+		getPaths(cur_path, 3, 2);
 		for(Point c : cur_path) 	
 			System.out.println("(" + c.x + ", " + c.y + ")");
+		System.out.println(countAllPaths(3, 2));
+		int matrix[][] = {{1, 2, 3}, {4, 5, 6}};
+		int paths[] = new int[matrix.length + matrix[0].length];
+		printAllPaths(0, 0, matrix, paths, 0,  matrix.length, matrix[0].length);
 	}
 
 }
